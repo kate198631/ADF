@@ -1,0 +1,21 @@
+{
+	"name": "SourceDataset_czu",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureBlobStorage3",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Binary",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "Azure-Data-Factory-by-Example-Second-Edition-main.zip",
+				"container": "sampledata"
+			},
+			"compression": {
+				"type": "ZipDeflate"
+			}
+		}
+	}
+}
