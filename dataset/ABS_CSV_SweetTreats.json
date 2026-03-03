@@ -1,5 +1,5 @@
 {
-	"name": "DelimitedText1",
+	"name": "ABS_CSV_SweetTreats",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "adfbyexample20262sa",
