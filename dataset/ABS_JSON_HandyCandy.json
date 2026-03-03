@@ -1,0 +1,53 @@
+{
+	"name": "ABS_JSON_HandyCandy",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "adfbyexample20262sa",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "Chapter3"
+		},
+		"annotations": [],
+		"type": "Json",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "*json",
+				"folderPath": "Azure-Data-Factory-by-Example-Second-Edition-main/SampleData/HandyCandy",
+				"container": "target"
+			}
+		},
+		"schema": {
+			"type": "object",
+			"properties": {
+				"Month": {
+					"type": "string"
+				},
+				"Company": {
+					"type": "string"
+				},
+				"Sales": {
+					"type": "array",
+					"items": {
+						"type": "object",
+						"properties": {
+							"Product": {
+								"type": "string"
+							},
+							"ManufacturerProductCode": {
+								"type": "string"
+							},
+							"Units": {
+								"type": "integer"
+							},
+							"Value": {
+								"type": "number"
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
