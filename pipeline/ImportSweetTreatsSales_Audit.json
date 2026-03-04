@@ -191,6 +191,23 @@
 						"type": "DatasetReference"
 					}
 				}
+			},
+			{
+				"name": "Set RunSeqNo",
+				"type": "SetVariable",
+				"dependsOn": [
+					{
+						"activity": "Lookup RunSeqNo",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": []
 			}
 		],
 		"variables": {
