@@ -124,7 +124,7 @@
 						},
 						"RunEndDateTime": {
 							"value": {
-								"value": "@activity('Import sales data').output.RunEndDateTime",
+								"value": "@utcNow()",
 								"type": "Expression"
 							},
 							"type": "DateTime"
