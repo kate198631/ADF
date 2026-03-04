@@ -193,6 +193,12 @@
 				}
 			}
 		],
+		"variables": {
+			"RunSeqNo": {
+				"type": "Integer",
+				"defaultValue": -1
+			}
+		},
 		"folder": {
 			"name": "Chapter4"
 		},
