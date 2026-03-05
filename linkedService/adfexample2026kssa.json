@@ -1,0 +1,17 @@
+{
+	"name": "adfexample2026kssa",
+	"properties": {
+		"annotations": [],
+		"type": "AzureBlobStorage",
+		"typeProperties": {
+			"connectionString": {
+				"type": "AzureKeyVaultSecret",
+				"store": {
+					"referenceName": "Adfbyexmaple2026kv",
+					"type": "LinkedServiceReference"
+				},
+				"secretName": "StorageAccountConnectionString1"
+			}
+		}
+	}
+}
