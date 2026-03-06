@@ -103,9 +103,7 @@
 						"referenceName": "ABS_JSON_adfexample2026kssa",
 						"type": "DatasetReference",
 						"parameters": {
-							"Container": "target",
-							"Directory": ".",
-							"File": "."
+							"Container": "target"
 						}
 					}
 				],
