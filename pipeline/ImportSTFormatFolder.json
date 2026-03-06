@@ -217,6 +217,15 @@
 				}
 			}
 		],
+		"parameters": {
+			"WildcardFolderPath": {
+				"type": "string"
+			},
+			"WildcardFileName": {
+				"type": "string",
+				"defaultValue": ".csv"
+			}
+		},
 		"variables": {
 			"RunSeqNo": {
 				"type": "Integer",
