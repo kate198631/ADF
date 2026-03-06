@@ -221,6 +221,36 @@
 						"type": "Expression"
 					}
 				}
+			},
+			{
+				"name": "Set return value",
+				"type": "SetVariable",
+				"dependsOn": [
+					{
+						"activity": "Set RunSeqNo",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "pipelineReturnValue",
+					"value": [
+						{
+							"key": "PipelineRunSeqNo",
+							"value": {
+								"type": "Expression",
+								"content": "@variables('RunSeqNo')"
+							}
+						}
+					],
+					"setSystemVariable": true
+				}
 			}
 		],
 		"parameters": {
