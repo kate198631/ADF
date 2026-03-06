@@ -1,5 +1,5 @@
 {
-	"name": "ImportSugarCubeSales_copy1",
+	"name": "ImportSugarCubeSales_CHP5",
 	"properties": {
 		"description": "import from .CSV file to SQL table",
 		"activities": [
@@ -100,8 +100,11 @@
 				},
 				"inputs": [
 					{
-						"referenceName": "ABS_JSON_SugarCube",
-						"type": "DatasetReference"
+						"referenceName": "ABS_JSON_adfexample2026kssa",
+						"type": "DatasetReference",
+						"parameters": {
+							"Container": "sampledata"
+						}
 					}
 				],
 				"outputs": [
