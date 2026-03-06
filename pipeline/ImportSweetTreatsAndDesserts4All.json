@@ -64,7 +64,7 @@
 				},
 				"userProperties": [],
 				"typeProperties": {
-					"variableName": "ReturnedValue2",
+					"variableName": "ReturnedValue",
 					"value": ""
 				}
 			}
