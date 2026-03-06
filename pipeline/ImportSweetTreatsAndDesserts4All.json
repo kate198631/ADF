@@ -46,8 +46,37 @@
 						"WildcardFolderPath": "Azure-Data-Factory-by-Example-Second-Edition-main/SampleData/SweetTreats"
 					}
 				}
+			},
+			{
+				"name": "Set variable1",
+				"type": "SetVariable",
+				"dependsOn": [
+					{
+						"activity": "EX_PL_ImportSweetTreats",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "ReturnedValue2",
+					"value": ""
+				}
 			}
 		],
+		"variables": {
+			"ReturnedValue": {
+				"type": "Integer"
+			},
+			"ReturnedValue2": {
+				"type": "Integer"
+			}
+		},
 		"folder": {
 			"name": "Chapter5"
 		},
