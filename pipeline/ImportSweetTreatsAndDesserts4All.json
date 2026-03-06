@@ -3,7 +3,7 @@
 	"properties": {
 		"activities": [
 			{
-				"name": "EX_PL_ImportDesserts4All",
+				"name": "ImportDesserts4All",
 				"type": "ExecutePipeline",
 				"dependsOn": [],
 				"policy": {
@@ -22,11 +22,11 @@
 				}
 			},
 			{
-				"name": "EX_PL_ImportSweetTreats",
+				"name": "ImportSweetTreats",
 				"type": "ExecutePipeline",
 				"dependsOn": [
 					{
-						"activity": "EX_PL_ImportDesserts4All",
+						"activity": "ImportDesserts4All",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -52,7 +52,7 @@
 				"type": "SetVariable",
 				"dependsOn": [
 					{
-						"activity": "EX_PL_ImportSweetTreats",
+						"activity": "ImportSweetTreats",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -65,7 +65,10 @@
 				"userProperties": [],
 				"typeProperties": {
 					"variableName": "ReturnedValue",
-					"value": ""
+					"value": {
+						"value": "@activity('ImportSweetTreats').output.pipelineReturnValue.PipelineRunSeqNo",
+						"type": "Expression"
+					}
 				}
 			}
 		],
