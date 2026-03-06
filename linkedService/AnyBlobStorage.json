@@ -3,8 +3,7 @@
 	"properties": {
 		"parameters": {
 			"ConnectionSecretName": {
-				"type": "string",
-				"defaultValue": "StorageAccountConnectionString1"
+				"type": "string"
 			}
 		},
 		"annotations": [],
