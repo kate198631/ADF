@@ -94,8 +94,13 @@
 				},
 				"inputs": [
 					{
-						"referenceName": "ABS_JSON_HandyCandy",
-						"type": "DatasetReference"
+						"referenceName": "ABS_JSON_adfexample2026kssa",
+						"type": "DatasetReference",
+						"parameters": {
+							"Container": "target",
+							"Directory": ".",
+							"File": "."
+						}
 					}
 				],
 				"outputs": [
@@ -107,7 +112,7 @@
 			}
 		],
 		"folder": {
-			"name": "Chapter3"
+			"name": "Chapter5"
 		},
 		"annotations": []
 	}
