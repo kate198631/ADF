@@ -176,7 +176,10 @@
 						"storedProcedureParameters": {
 							"Comments": {
 								"type": "String",
-								"value": null
+								"value": {
+									"value": "Pipeline @{pipeline().Pipeline} executed in @{pipeline().DataFactory}",
+									"type": "Expression"
+								}
 							},
 							"PipelineRunId": {
 								"type": "Guid",
