@@ -489,7 +489,8 @@
 									"parameters": {
 										"Container": "output",
 										"Directory": ".",
-										"File": "."
+										"File": ".",
+										"LinkedServiceConnectionSecret": "StorageAccountConnectionString1"
 									}
 								}
 							],
