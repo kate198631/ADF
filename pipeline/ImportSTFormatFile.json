@@ -1,5 +1,5 @@
 {
-	"name": "Log pipeline failure",
+	"name": "ImportSTFormatFile",
 	"properties": {
 		"description": "import from .CSV file to SQL table",
 		"activities": [
@@ -260,7 +260,7 @@
 				}
 			},
 			{
-				"name": "Log  pipeline outcome_copy1",
+				"name": "Log  pipeline failure",
 				"type": "SqlServerStoredProcedure",
 				"dependsOn": [
 					{
