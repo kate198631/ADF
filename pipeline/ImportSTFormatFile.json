@@ -176,7 +176,10 @@
 						"storedProcedureParameters": {
 							"Comments": {
 								"type": "String",
-								"value": null
+								"value": {
+									"value": "@\"Pipeline \"pipeline().Pipeline\n\"executed in\" pipeline().DataFactory\n\"- loading file\" @pipeline().parameters.Directory/@pipeline().parameters.File",
+									"type": "Expression"
+								}
 							},
 							"PipelineRunId": {
 								"type": "Guid",
