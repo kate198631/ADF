@@ -175,8 +175,7 @@
 						"sqlReaderStoredProcedureName": "[dbo].[LogPipelineStart]",
 						"storedProcedureParameters": {
 							"Comments": {
-								"type": "String",
-								"value": null
+								"type": "String"
 							},
 							"PipelineRunId": {
 								"type": "Guid",
