@@ -176,10 +176,7 @@
 						"storedProcedureParameters": {
 							"Comments": {
 								"type": "String",
-								"value": {
-									"value": "@\"Pipeline \"pipeline().Pipeline\n",
-									"type": "Expression"
-								}
+								"value": null
 							},
 							"PipelineRunId": {
 								"type": "Guid",
