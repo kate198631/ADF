@@ -1,0 +1,81 @@
+{
+	"name": "Filed_pipeline_test",
+	"properties": {
+		"activities": [
+			{
+				"name": "Fail1",
+				"type": "Fail",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"message": "Test Failed",
+					"errorCode": "999"
+				}
+			},
+			{
+				"name": "Set variable1",
+				"type": "SetVariable",
+				"dependsOn": [
+					{
+						"activity": "Fail1",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "pipelineReturnValue",
+					"value": [
+						{
+							"key": "var1",
+							"value": {
+								"type": "String",
+								"content": "variable1"
+							}
+						}
+					],
+					"setSystemVariable": true
+				}
+			},
+			{
+				"name": "Set variable2",
+				"type": "SetVariable",
+				"dependsOn": [
+					{
+						"activity": "Set variable1",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "pipelineReturnValue",
+					"value": [
+						{
+							"key": "var2",
+							"value": {
+								"type": "String",
+								"content": "variable2"
+							}
+						}
+					],
+					"setSystemVariable": true
+				}
+			}
+		],
+		"folder": {
+			"name": "Chapter6"
+		},
+		"annotations": []
+	}
+}
