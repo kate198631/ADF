@@ -254,12 +254,11 @@
 			}
 		],
 		"parameters": {
-			"WildcardFolderPath": {
+			"Directory": {
 				"type": "string"
 			},
-			"WildcardFileName": {
-				"type": "string",
-				"defaultValue": "*.csv"
+			"File": {
+				"type": "string"
 			}
 		},
 		"variables": {
@@ -269,7 +268,7 @@
 			}
 		},
 		"folder": {
-			"name": "Chapter5"
+			"name": "Chapter6"
 		},
 		"annotations": []
 	}
