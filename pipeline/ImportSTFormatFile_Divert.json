@@ -496,7 +496,11 @@
 							"outputs": [
 								{
 									"referenceName": "ASQL_Table",
-									"type": "DatasetReference"
+									"type": "DatasetReference",
+									"parameters": {
+										"SchemaName": "dbo",
+										"TableName": "LoadingError"
+									}
 								}
 							]
 						}
