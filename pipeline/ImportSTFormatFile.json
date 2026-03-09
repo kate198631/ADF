@@ -177,7 +177,7 @@
 							"Comments": {
 								"type": "String",
 								"value": {
-									"value": "@\"Pipeline \"pipeline().Pipeline\n\"executed in\" pipeline().DataFactory\n\"- loading file\" @pipeline().parameters.Directory/@pipeline().parameters.File",
+									"value": "@\"Pipeline \"pipeline().Pipeline\n",
 									"type": "Expression"
 								}
 							},
