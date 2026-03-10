@@ -24,7 +24,8 @@
 								"value": "@pipeline().parameters.FolderPath",
 								"type": "Expression"
 							},
-							"File": " "
+							"File": " ",
+							"LinkedServiceConnectionSecret": "StorageAccountConnectionString1"
 						}
 					},
 					"fieldList": [
