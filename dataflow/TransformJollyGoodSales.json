@@ -25,11 +25,14 @@
 			"sinks": [],
 			"transformations": [
 				{
-					"name": "filter"
+					"name": "ExcludeMonthTotal"
 				},
 				{
 					"name": "RateToUSD",
 					"description": "Filtering rows using expression on Columns 'ToCurrency'"
+				},
+				{
+					"name": "LookupExchangeRates"
 				}
 			],
 			"scriptLines": [
@@ -58,8 +61,12 @@
 				"     fileName: 'ExchangeRates.xlsx',",
 				"     sheetName: 'Sheet1',",
 				"     firstRowAsHeader: true) ~> ExchangeRates",
-				"JollyGoodSales filter(Product!='Month Total') ~> filter",
-				"ExchangeRates filter(ToCurrency=='USD') ~> RateToUSD"
+				"JollyGoodSales filter(Product!='Month Total') ~> ExcludeMonthTotal",
+				"ExchangeRates filter(ToCurrency=='USD') ~> RateToUSD",
+				"ExcludeMonthTotal, RateToUSD lookup(ERROR_FUNCTION('') == ERROR_FUNCTION(''),",
+				"     multiple: false,",
+				"     pickup: 'any',",
+				"     broadcast: 'auto')~> LookupExchangeRates"
 			]
 		}
 	}
