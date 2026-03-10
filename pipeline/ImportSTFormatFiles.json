@@ -31,7 +31,8 @@
 					"fieldList": [
 						"exists",
 						"itemType",
-						"itemName"
+						"itemName",
+						"childItems"
 					],
 					"storeSettings": {
 						"type": "AzureBlobStorageReadSettings",
