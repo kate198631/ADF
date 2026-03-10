@@ -1,0 +1,9 @@
+{
+	"name": "ImportSTFormatFiles",
+	"properties": {
+		"folder": {
+			"name": "Chapter6"
+		},
+		"annotations": []
+	}
+}
