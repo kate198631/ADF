@@ -1,6 +1,12 @@
 {
 	"name": "ImportSTFormatFiles",
 	"properties": {
+		"parameters": {
+			"FolderPath": {
+				"type": "string",
+				"defaultValue": "Azure-Data-Factory-by-Example-Second-Edition-main/SampleData/NaughtyButNice"
+			}
+		},
 		"folder": {
 			"name": "Chapter6"
 		},
