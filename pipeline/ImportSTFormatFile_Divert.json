@@ -434,7 +434,7 @@
 				"userProperties": [],
 				"typeProperties": {
 					"expression": {
-						"value": "@greater(\n    activity('Import sales data').output.rpwsSkipped, 0\n)",
+						"value": "@greater(\n    activity('Import sales data').output.rowsSkipped, 0\n)",
 						"type": "Expression"
 					},
 					"ifTrueActivities": [
