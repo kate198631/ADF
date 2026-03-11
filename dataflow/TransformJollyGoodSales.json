@@ -33,9 +33,18 @@
 				},
 				{
 					"name": "LookupExchangeRates"
+				},
+				{
+					"name": "derivedColumn1"
+				},
+				{
+					"name": "select1"
 				}
 			],
 			"scriptLines": [
+				"parameters{",
+				"     RunSeqNo as integer (-1)",
+				"}",
 				"source(output(",
 				"          Period as date,",
 				"          Product as string,",
@@ -65,9 +74,22 @@
 				"ExchangeRates filter(ToCurrency=='USD') ~> RateToUSD",
 				"ExcludeMonthTotal, RateToUSD lookup(Currency == FromCurrency",
 				"     && Period == Date,",
-				"     multiple: false,",
-				"     pickup: 'any',",
-				"     broadcast: 'auto')~> LookupExchangeRates"
+				"     multiple: true,",
+				"     broadcast: 'auto',",
+				"     pickup: 'any')~> LookupExchangeRates",
+				"LookupExchangeRates derive(SalesValueUSD = {Unit Price}*{Units Sold}*ExchangeRate,",
+				"          Retailer = 'Jolly Good Ltd',",
+				"          RunSeqNo = $RunSeqNo) ~> derivedColumn1",
+				"derivedColumn1 select(mapColumn(",
+				"          SalesMonth = Period,",
+				"          Product,",
+				"          UnitsSold = {Units Sold},",
+				"          SalesValueUSD,",
+				"          Retailer,",
+				"          RunSeqNo",
+				"     ),",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> select1"
 			]
 		}
 	}
