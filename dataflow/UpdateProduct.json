@@ -38,7 +38,7 @@
 				"AzureSQLdboSales derive(ProductName = trim(left(Product, length(Product) - length(:WeightString))),",
 				"          WeightInOunces = toFloat(replace(:WeightString,:WeightUnit,'')) / iif(:WeightUnit=='g', 28.3495, 1.0),",
 				"          WeightInGrams = toFloat(replace(:WeightString, :WeightUnit, '')) * iif(:WeightUnit=='oz', 0.035, 1.0),",
-				"          WeightString := right(Product, locate('',reverse(Product)) -1 ),",
+				"          WeightString := right(Product, locate(' ',reverse(Product)) -1 ),",
 				"          WeightUnit := iif(endsWith(Product, 'oz'), 'oz', 'g')) ~> derivedColumn1"
 			]
 		}
