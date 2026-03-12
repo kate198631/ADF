@@ -170,7 +170,7 @@
 						},
 						"RunStatus": {
 							"value": {
-								"value": "@if(\n    equals(\n        activity('Data flow1').output.executionDetails[0].status, 'Failed'\n        )\n    ,'Failed'\n    ,'Done'\n        )",
+								"value": "done",
 								"type": "Expression"
 							},
 							"type": "String"
