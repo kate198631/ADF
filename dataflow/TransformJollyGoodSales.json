@@ -43,10 +43,10 @@
 					"name": "LookupExchangeRates"
 				},
 				{
-					"name": "derivedColumn1"
+					"name": "DerivedSalesValueUSD"
 				},
 				{
-					"name": "select1"
+					"name": "PipelineSinkSchema"
 				}
 			],
 			"scriptLines": [
@@ -87,8 +87,8 @@
 				"     pickup: 'any')~> LookupExchangeRates",
 				"LookupExchangeRates derive(SalesValueUSD = {Unit Price}*{Units Sold}*ExchangeRate,",
 				"          Retailer = 'Jolly Good Ltd',",
-				"          RunSeqNo = $RunSeqNo) ~> derivedColumn1",
-				"derivedColumn1 select(mapColumn(",
+				"          RunSeqNo = $RunSeqNo) ~> DerivedSalesValueUSD",
+				"DerivedSalesValueUSD select(mapColumn(",
 				"          SalesMonth = Period,",
 				"          Product,",
 				"          UnitsSold = {Units Sold},",
@@ -97,8 +97,8 @@
 				"          RunSeqNo",
 				"     ),",
 				"     skipDuplicateMapInputs: true,",
-				"     skipDuplicateMapOutputs: true) ~> select1",
-				"select1 sink(allowSchemaDrift: true,",
+				"     skipDuplicateMapOutputs: true) ~> PipelineSinkSchema",
+				"PipelineSinkSchema sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     input(",
 				"          RowId as integer,",
