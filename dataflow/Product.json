@@ -1,0 +1,14 @@
+{
+	"name": "Product",
+	"properties": {
+		"type": "UDFLibrary",
+		"typeProperties": {
+			"sources": [],
+			"sinks": [],
+			"transformations": [],
+			"scriptLines": [
+				"ProductWeightInGrams(string) as float = toFloat(replace(replace(right(i1,locate(' ',reverse(i1)) - 1),'oz',''),'g',''))*iif(endsWith(i1,'oz'),28.3495,1.0)"
+			]
+		}
+	}
+}
