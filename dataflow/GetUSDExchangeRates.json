@@ -1,0 +1,51 @@
+{
+	"name": "GetUSDExchangeRates",
+	"properties": {
+		"folder": {
+			"name": "Chapter7"
+		},
+		"type": "Flowlet",
+		"typeProperties": {
+			"sources": [
+				{
+					"linkedService": {
+						"referenceName": "adfbyexample20262sa",
+						"type": "LinkedServiceReference"
+					},
+					"name": "ExchangeRates"
+				}
+			],
+			"sinks": [],
+			"transformations": [
+				{
+					"name": "filterToCurrencyUSD"
+				},
+				{
+					"name": "OutputUSDRates"
+				}
+			],
+			"scriptLines": [
+				"source(output(",
+				"          FromCurrency as string,",
+				"          ToCurrency as string,",
+				"          Date as date,",
+				"          ExchangeRate as double",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false,",
+				"     format: 'excel',",
+				"     container: 'target',",
+				"     folderPath: 'Azure-Data-Factory-by-Example-Second-Edition-main/SampleData',",
+				"     fileName: 'ExchangeRates.xlsx',",
+				"     sheetName: 'Sheet1',",
+				"     firstRowAsHeader: true) ~> ExchangeRates",
+				"ExchangeRates filter(ToCurrency=='USD') ~> filterToCurrencyUSD",
+				"filterToCurrencyUSD output(mapColumn(",
+				"          FromCurrency,",
+				"          ExchangeRate",
+				"     )) ~> OutputUSDRates"
+			]
+		}
+	}
+}
