@@ -19,6 +19,9 @@
 			"transformations": [
 				{
 					"name": "derivedColumn1"
+				},
+				{
+					"name": "AggregateProduct"
 				}
 			],
 			"scriptLines": [
@@ -39,7 +42,10 @@
 				"          WeightInOunces = toFloat(replace(:WeightString,:WeightUnit,'')) / iif(:WeightUnit=='g', 28.3495, 1.0),",
 				"          WeightInGrams = toFloat(replace(:WeightString, :WeightUnit, '')) * iif(:WeightUnit=='oz', 0.035, 1.0),",
 				"          WeightString := right(Product, locate(' ',reverse(Product)) -1 ),",
-				"          WeightUnit := iif(endsWith(Product, 'oz'), 'oz', 'g')) ~> derivedColumn1"
+				"          WeightUnit := iif(endsWith(Product, 'oz'), 'oz', 'g')) ~> derivedColumn1",
+				"derivedColumn1 aggregate(groupBy(ProductName),",
+				"     ProductNames = first(ProductName),",
+				"          each(match(startsWith(name, 'Weight')), $$ = first($$))) ~> AggregateProduct"
 			]
 		}
 	}
