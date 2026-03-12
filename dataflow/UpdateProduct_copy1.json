@@ -1,0 +1,99 @@
+{
+	"name": "UpdateProduct_copy1",
+	"properties": {
+		"folder": {
+			"name": "Chapter7"
+		},
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "AzureSqldboSales",
+						"type": "DatasetReference"
+					},
+					"name": "AzureSQLdboSales"
+				},
+				{
+					"dataset": {
+						"referenceName": "AzureSqldboProduct",
+						"type": "DatasetReference"
+					},
+					"name": "AzureSQLdboProduct"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "AzureSqldboProduct",
+						"type": "DatasetReference"
+					},
+					"name": "dboProductSink"
+				}
+			],
+			"transformations": [
+				{
+					"name": "DerivedProductFeatures"
+				},
+				{
+					"name": "EliminateDuplicates"
+				},
+				{
+					"name": "NewRowsOnly"
+				}
+			],
+			"udfLibraries": [
+				{
+					"referenceName": "ProductUOM",
+					"type": "DataFlowReference"
+				}
+			],
+			"scriptLines": [
+				"source(output(",
+				"          RowId as integer,",
+				"          Retailer as string,",
+				"          SalesMonth as date,",
+				"          Product as string,",
+				"          SalesValueUSD as decimal(19,2),",
+				"          UnitsSold as integer,",
+				"          RunSeqNo as integer",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     isolationLevel: 'READ_UNCOMMITTED',",
+				"     format: 'table') ~> AzureSQLdboSales",
+				"source(output(",
+				"          Product as string,",
+				"          ProductName as string,",
+				"          WeightInOunces as decimal(19,2),",
+				"          WeightInGrams as decimal(19,2)",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     isolationLevel: 'READ_UNCOMMITTED',",
+				"     format: 'table') ~> AzureSQLdboProduct",
+				"AzureSQLdboSales derive(ProductName = trim(left(Product, length(Product) - length(:WeightString))),",
+				"          WeightInOunces = toFloat(replace(:WeightString,:WeightUnit,'')) / iif(:WeightUnit=='g', 28.3495, 1.0),",
+				"          WeightInGrams = ProductWeightInGrams(Product),",
+				"          WeightString := right(Product, locate(' ',reverse(Product)) -1 ),",
+				"          WeightUnit := iif(endsWith(Product, 'oz'), 'oz', 'g')) ~> DerivedProductFeatures",
+				"DerivedProductFeatures aggregate(groupBy(ProductName),",
+				"     Product = first(ProductName),",
+				"          each(match(startsWith(name, 'Weight')), $$ = first($$))) ~> EliminateDuplicates",
+				"EliminateDuplicates, AzureSQLdboProduct exists(EliminateDuplicates@Product == AzureSQLdboProduct@Product,",
+				"     negate:true,",
+				"     broadcast: 'auto')~> NewRowsOnly",
+				"NewRowsOnly sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     deletable:false,",
+				"     insertable:true,",
+				"     updateable:false,",
+				"     upsertable:false,",
+				"     format: 'table',",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     errorHandlingOption: 'stopOnFirstError') ~> dboProductSink"
+			]
+		}
+	}
+}
