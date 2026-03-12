@@ -1,0 +1,114 @@
+{
+	"name": "TransformJollyGoodSales_DFlet",
+	"properties": {
+		"folder": {
+			"name": "Chapter7"
+		},
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "XLSX_JollyGood",
+						"type": "DatasetReference"
+					},
+					"name": "JollyGoodSales"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "ASQL_dboSalesLoad",
+						"type": "DatasetReference"
+					},
+					"name": "dboSalesLoad"
+				}
+			],
+			"transformations": [
+				{
+					"name": "ExcludeMonthTotal"
+				},
+				{
+					"name": "LookupExchangeRates"
+				},
+				{
+					"name": "DerivedSalesValueUSD"
+				},
+				{
+					"name": "PipelineSinkSchema"
+				},
+				{
+					"name": "GetUSDEchangeRates",
+					"flowlet": {
+						"referenceName": "GetUSDExchangeRates",
+						"type": "DataFlowReference"
+					}
+				}
+			],
+			"scriptLines": [
+				"parameters{",
+				"     RunSeqNo as integer (-1)",
+				"}",
+				"source(output(",
+				"          Period as date,",
+				"          Product as string,",
+				"          {Unit Price} as double,",
+				"          Currency as string,",
+				"          {Units Sold} as integer",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> JollyGoodSales",
+				"compose(composition: 'GetUSDExchangeRates') ~> GetUSDEchangeRates@(OutputUSDRates)",
+				"JollyGoodSales filter(Product!='Month Total') ~> ExcludeMonthTotal",
+				"ExcludeMonthTotal, GetUSDEchangeRates@OutputUSDRates lookup(Currency == FromCurrency",
+				"     && Period == Date,",
+				"     multiple: false,",
+				"     pickup: 'any',",
+				"     broadcast: 'auto')~> LookupExchangeRates",
+				"LookupExchangeRates derive(SalesValueUSD = {Unit Price}*{Units Sold}*ExchangeRate,",
+				"          Retailer = 'Jolly Good Ltd',",
+				"          RunSeqNo = $RunSeqNo) ~> DerivedSalesValueUSD",
+				"DerivedSalesValueUSD select(mapColumn(",
+				"          SalesMonth = Period,",
+				"          Product,",
+				"          UnitsSold = {Units Sold},",
+				"          SalesValueUSD,",
+				"          Retailer,",
+				"          RunSeqNo",
+				"     ),",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> PipelineSinkSchema",
+				"PipelineSinkSchema sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     input(",
+				"          RowId as integer,",
+				"          Retailer as string,",
+				"          SalesMonth as date,",
+				"          Product as string,",
+				"          ManufacturerProductCode as string,",
+				"          SalesValueUSD as decimal(18,2),",
+				"          UnitsSold as integer,",
+				"          SourceFileName as string,",
+				"          RunSeqNo as integer",
+				"     ),",
+				"     deletable:false,",
+				"     insertable:true,",
+				"     updateable:false,",
+				"     upsertable:false,",
+				"     format: 'table',",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     errorHandlingOption: 'stopOnFirstError',",
+				"     mapColumn(",
+				"          Retailer,",
+				"          SalesMonth,",
+				"          Product,",
+				"          SalesValueUSD,",
+				"          UnitsSold,",
+				"          RunSeqNo",
+				"     )) ~> dboSalesLoad"
+			]
+		}
+	}
+}
