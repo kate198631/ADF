@@ -43,6 +43,7 @@
 				"ExchangeRates filter(ToCurrency=='USD') ~> filterToCurrencyUSD",
 				"filterToCurrencyUSD output(mapColumn(",
 				"          FromCurrency,",
+				"          Date,",
 				"          ExchangeRate",
 				"     )) ~> OutputUSDRates"
 			]
