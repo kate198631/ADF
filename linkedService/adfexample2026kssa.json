@@ -12,10 +12,6 @@
 				},
 				"secretName": "StorageAccountConnectionString1"
 			}
-		},
-		"connectVia": {
-			"referenceName": "AzureVnetintegrationRuntime",
-			"type": "IntegrationRuntimeReference"
 		}
 	}
 }
