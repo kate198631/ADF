@@ -1,0 +1,7 @@
+{
+	"name": "adfbyexmaple20261sa",
+	"properties": {
+		"privateLinkResourceId": "/subscriptions/7eae2b7a-33a6-440c-8872-175e80f09c25/resourceGroups/adfbyexample2023-rg/providers/Microsoft.Storage/storageAccounts/adfbyexample2026sa",
+		"groupId": "blob"
+	}
+}
