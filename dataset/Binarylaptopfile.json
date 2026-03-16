@@ -1,0 +1,21 @@
+{
+	"name": "Binarylaptopfile",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "FileServerlocalPC",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "Chapter8"
+		},
+		"annotations": [],
+		"type": "Binary",
+		"typeProperties": {
+			"location": {
+				"type": "FileServerLocation",
+				"fileName": "2020-09.csv",
+				"folderPath": "Temp"
+			}
+		}
+	}
+}
