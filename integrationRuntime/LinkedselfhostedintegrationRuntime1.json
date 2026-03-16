@@ -1,0 +1,12 @@
+{
+	"name": "LinkedselfhostedintegrationRuntime1",
+	"properties": {
+		"type": "SelfHosted",
+		"typeProperties": {
+			"linkedInfo": {
+				"resourceId": "/subscriptions/7eae2b7a-33a6-440c-8872-175e80f09c25/resourcegroups/adfbyexample2023-rg/providers/Microsoft.DataFactory/factories/shareddatafactory2026/integrationruntimes/AzureselfhostedintegrationRuntime1",
+				"authorizationType": "Rbac"
+			}
+		}
+	}
+}
