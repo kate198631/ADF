@@ -8,6 +8,60 @@
 		"AzureBlobStorage1_connectionString": {
 			"value": ""
 		},
+		"AzureBlobStorage3_connectionString": {
+			"value": ""
+		},
+		"AzureBlobStorage4_connectionString": {
+			"value": ""
+		},
+		"AzureBlobStorage5_connectionString": {
+			"value": ""
+		},
+		"AzureBlobStoragePWQ_connectionString": {
+			"value": ""
+		},
+		"AzureSqlDatabase1_password": {
+			"value": ""
+		},
+		"FileServerlocalPC_password": {
+			"value": ""
+		},
+		"adfbyexample20262sa_connectionString": {
+			"value": ""
+		},
+		"Adfbyexmaple2026kv_properties_typeProperties_baseUrl": {
+			"value": "https://adfbyexample2026-kv.vault.azure.net/"
+		},
+		"AnyBlobStorage_properties_typeProperties_connectionString_secretName": {
+			"value": "@linkedService().ConnectionSecretName"
+		},
+		"AzureSqlDatabase1_properties_typeProperties_server": {
+			"value": "adfbyexample2026.database.windows.net"
+		},
+		"AzureSqlDatabase1_properties_typeProperties_database": {
+			"value": "adfbyexample2024db"
+		},
+		"AzureSqlDatabase1_properties_typeProperties_userName": {
+			"value": "sqladmin"
+		},
+		"FileServerlocalPC_properties_typeProperties_host": {
+			"value": "C:\\"
+		},
+		"FileServerlocalPC_properties_typeProperties_userId": {
+			"value": "kate@danfoss.com"
+		},
+		"adfexample2026kssa_properties_typeProperties_connectionString_secretName": {
+			"value": "StorageAccountConnectionString1"
+		},
+		"LinkedselfhostedintegrationRuntime1_properties_typeProperties_linkedInfo_resourceId": {
+			"value": "/subscriptions/7eae2b7a-33a6-440c-8872-175e80f09c25/resourcegroups/adfbyexample2023-rg/providers/Microsoft.DataFactory/factories/shareddatafactory2026/integrationruntimes/AzureselfhostedintegrationRuntime1"
+		},
+		"adfbyexmaple20261sa_properties_privateLinkResourceId": {
+			"value": "/subscriptions/7eae2b7a-33a6-440c-8872-175e80f09c25/resourceGroups/adfbyexample2023-rg/providers/Microsoft.Storage/storageAccounts/adfbyexample2026sa"
+		},
+		"adfbyexmaple20261sa_properties_groupId": {
+			"value": "blob"
+		},
 		"containerUri": {
 			"value": ""
 		},
